@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&T Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #f8fafc;
+            --accent: #e2e8f0;
+            --neon: #00d4ff;
+            --glass: rgba(255, 255, 255, 0.95);
+            --dark: #0f172a;
+            --gradient: linear-gradient(135deg, var(--primary), var(--neon));
+            --shadow: 0 20px 50px rgba(124, 58, 237, 0.5);
+            --neon-shadow: 0 0 20px var(--neon), 0 0 40px var(--neon);
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            margin: 0;
+            text-align: center;
+            color: var(--dark);
+            animation: fadeIn 1.5s ease-in;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%237c3aed" opacity="0.1"/></svg>') repeat;
+            animation: particleMove 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes particleMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+        header {
+            padding: 100px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 5px;
+            box-shadow: var(--neon-shadow);
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 15px var(--neon);
+            animation: subtleGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes subtleGlow {
+            from { text-shadow: 0 0 15px var(--neon); }
+            to { text-shadow: 0 0 20px var(--neon); }
+        }
+        .sub {
+            margin-top: 20px;
+            font-size: 18px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+            color: var(--dark);
+        }
+        .card {
+            background: var(--glass);
+            width: 90%;
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 50px 40px;
+            border-radius: 40px;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--neon);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--neon-shadow);
+        }
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--neon);
+            position: relative;
+            z-index: 1;
+        }
+        ul {
+            padding: 0;
+            list-style: none;
+            font-size: 18px;
+            line-height: 2.2;
+        }
+        ul li {
+            margin: 20px 0;
+            padding-left: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+            color: var(--dark);
+            cursor: pointer;
+            border-radius: 15px;
+            padding: 15px 15px 15px 40px;
+        }
+        ul li:hover {
+            color: var(--neon);
+            transform: translateX(10px);
+            background: rgba(0, 212, 255, 0.1);
+        }
+        ul li::before {
+            content: '✓';
+            color: var(--neon);
+            font-weight: bold;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        ul li:hover::before {
+            transform: translateY(-50%) scale(1.2) rotate(5deg);
+        }
+        .price-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+            opacity: 0;
+            font-size: 15px;
+            color: var(--dark);
+            margin-top: 0;
+            text-align: left;
+            padding-left: 15px;
+        }
+        .price-info.active {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 15px;
+        }
+        .price-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .price-list-item:hover {
+            background: rgba(0, 212, 255, 0.15);
+            transform: translateX(5px);
+        }
+        .price-list-item::before {
+            content: '•';
+            color: var(--neon);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .price-type {
+            font-weight: 500;
+            color: var(--dark);
+            flex: 1;
+        }
+        .price-amount {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 16px;
+            white-space: nowrap;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .btn {
+            display: inline-block;
+            width: 90%;
+            max-width: 320px;
+            margin: 10px;
+            padding: 25px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.5s ease;
+            box-shadow: var(--neon-shadow);
+            position: relative;
+            overflow: hidden;
+            font-size: 16px;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 0 30px var(--neon), 0 0 60px var(--neon);
+        }
+        .btn i {
+            margin-right: 15px;
+        }
+        footer {
+            margin-top: 80px;
+            padding: 40px;
+            font-size: 16px;
+            opacity: 0.9;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            box-shadow: 0 -10px 25px rgba(124, 58, 237, 0.3);
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .card { padding: 40px 20px; }
+            .btn { width: 95%; margin: 10px 2.5%; }
+            .buttons { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>H&T Store</h1>
+    <p class="sub">Trusted Digital Store • Fast Response 💙</p>
+</header>
+
+<div class="card">
+    <h2>Produk Tersedia</h2>
+    <ul>
+        <li onclick="togglePrice(this)">
+            Canva Pro
+            <div class="price-info">
+                <div class="price-list-item">
+                    <span class="price-type">1 Bulan</span>
+                    <span class="price-amount">Rp 6.000</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">3 Bulan</span>
+                    <span class="price-amount">Rp 16.000</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">1 Tahun</span>
+                    <span class="price-amount">Rp 25.000</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">Lifetime</span>
+                    <span class="price-amount">Rp 30.000</span>
+                </div>
+            </div>
+        </li>
+        <li onclick="togglePrice(this)">
+            Netflix Premium
+            <div class="price-info">
+                <div class="price-list-item">
+                    <span class="price-type">Semipriv</span>
+                    <span class="price-amount">Rp 34.000 / bulan</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">1p1u</span>
+                    <span class="price-amount">Rp 29.000 / bulan</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">1p2u</span>
+                    <span class="price-amount">Rp 19.000 / bulan</span>
+                </div>
+            </div>
+        </li>
+        <li onclick="togglePrice(this)">
+            Capcut Premium
+            <div class="price-info">
+                <div class="price-list-item">
+                    <span class="price-type">1 Bulan Private</span>
+                    <span class="price-amount">Rp 15.000</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">1 Bulan 2u</span>
+                    <span class="price-amount">Rp 10.000</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">7 Hari Private</span>
+                    <span class="price-amount">Rp 6.000</span>
+                </div>
+            </div>
+        </li>
+        <li onclick="togglePrice(this)">
+            ChatGPT Premium
+            <div class="price-info">
+                <div class="price-list-item">
+                    <span class="price-type">GPT Famplan 5.0/5.1 (full garansi)</span>
+                    <span class="price-amount">Rp 30.000 / bulan</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">GPT Famplan 5.0/5.1 (full garansi)</span>
+                    <span class="price-amount">Rp 10.000 / minggu</span>
+                </div>
+            </div>
+        </li>
+        <li onclick="togglePrice(this)">
+            YouTube Premium
+            <div class="price-info">
+                <div class="price-list-item">
+                    <span class="price-type">Indplan</span>
+                    <span class="price-amount">Rp 9.000 / bulan</span>
+                </div>
+                <div class="price-list-item">
+                    <span class="price-type">Family Slot</span>
+                    <span class="price-amount">Rp 6.000 / bulan</span>
+                </div>
+            </div>
+        </li>
+        <li onclick="togglePrice(this)">
+            All app Premium lainnya
+            <div class="price-info">
+                <div class="price-detail">
+                    <div class="price-amount">Hubungi Admin dengan informasi di bawah</div>
+                    <div class="duration">Harga bervariasi tergantung aplikasi</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="buttons">
+    <a class="btn" href="https://wa.me/6285841218112" target="_blank"><i class="fab fa-whatsapp"></i>Chat WhatsApp</a>
+    <a class="btn" href="https://chat.whatsapp.com/C9h8uAhCujyF5Wa4d3XzmS?mode=ems_share_t" target="_blank"><i class="fab fa-whatsapp"></i>Group WhatsApp</a>
+    <a class="btn" href="https://www.instagram.com/lyly_st0ree" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+    <a class="btn" href="https://x.com/alexa_yeeu" target="_blank"><i class="fab fa-twitter"></i>X (Twitter)</a>
+    <a class="btn" href="https://t.me/lylyst0ree" target="_blank"><i class="fab fa-telegram"></i>Testi Telegram</a>
+</div>
+
+<footer>© Sejak 2023 • Amanah & Terpercaya</footer>
+
+<script>
+function togglePrice(element) {
+    const priceInfo = element.querySelector('.price-info');
+    const allPriceInfos = document.querySelectorAll('.price-info');
+    
+    // Tutup semua yang lain
+    allPriceInfos.forEach(info => {
+        if (info !== priceInfo) {
+            info.classList.remove('active');
+        }
+    });
+    
+    // Toggle yang diklik
+    priceInfo.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
